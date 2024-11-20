@@ -1,0 +1,20 @@
+﻿<Window x:Class="Wocha.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wocha"
+        mc:Ignorable="d"
+        Title="Wocha" Height="500" Width="800" ResizeMode="CanMinimize">
+    <Grid Background="#FF2B2B2B">
+        <Button Click="AuthButton_Click" Content="Войти" Margin="0,355,0,0" HorizontalAlignment="Center" Width="84" Height="28" VerticalAlignment="Top" FontSize="14" FontFamily="Arial Black" Foreground="#FF02C3BA" Background="#FF1B1B1B"/>
+        <TextBox Name="loginTextBox" Margin="0,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="230" Height="23" FontSize="14" FontFamily="Arial"/>
+        <Label Content="Wocha" Margin="343,71,343,0" HorizontalContentAlignment="Center" FontSize="24" FontFamily="Arial Black" VerticalAlignment="Top" Foreground="#FF02C3BA"/>
+        <Label Content="Вход в аккаунт" HorizontalAlignment="Center" Margin="0,122,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="18" Foreground="#FF02C3BA"/>
+        <Label Content="Логин" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="14" Foreground="#FF02C3BA" Height="23" VerticalAlignment="Top" Margin="0,207,0,0"/>
+        <Label Content="Пароль" HorizontalAlignment="Center" Margin="0,269,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="14" Foreground="#FF02C3BA" RenderTransformOrigin="2.38,1.282"/>
+        <PasswordBox HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top" Width="230" Height="23"/>
+        <Label Content="Введите свой логин и пароль для входа" HorizontalAlignment="Center" Margin="0,158,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="14" Foreground="#FF02C3BA"/>
+
+    </Grid>
+</Window>
