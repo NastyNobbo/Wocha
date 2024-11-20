@@ -7,17 +7,17 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Wocha.ChatWindow"
         mc:Ignorable="d"
         Title="ChatWindow"
-        WindowStyle="ThreeDBorderWindow" d:DesignHeight="1080" d:DesignWidth="1920" SizeToContent="Width" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        WindowStyle="ThreeDBorderWindow" Height="1080" Width="1920" WindowState="Maximized">
     <Grid Background="#FF2B2B2B">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="89*"/>
             <ColumnDefinition Width="391*"/>
         </Grid.ColumnDefinitions>
-        <Button Click="SendButton_Click" Content="Отправить" Margin="1130,951,0,0" HorizontalAlignment="Left" Width="145" Height="47" VerticalAlignment="Top" FontSize="14" FontFamily="Arial Black" Foreground="#FF02C3BA" Background="#FF1B1B1B" Grid.Column="1"/>
-        <TextBox Name="messageTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="61,951,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1069" Height="47" FontSize="24" FontFamily="Arial"/>
+        <Button Click="SendButton_Click" Content="Отправить" Margin="1130,951,0,0" HorizontalAlignment="Left" Width="145" Height="47" VerticalAlignment="Top" FontSize="14" FontFamily="Arial Black" Foreground="#FF02C3BA" Background="#FF1B1B1B" Grid.Column="1" BorderBrush="#FF02C3BA"/>
+        <TextBox Name="messageTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="61,951,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1069" Height="47" FontSize="24" FontFamily="Arial" Background="#FF2B2B2B" BorderBrush="#FF02C3BA"/>
 
-        <TextBox Grid.Column="1" Name="chatTextBox" HorizontalAlignment="Left" Margin="61,165,0,164" Height="735" Width="1214" FontFamily="Arial" FontSize="24" />
-        <ListBox Name="usersListBox" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <TextBox Grid.Column="1" Name="chatTextBox" HorizontalAlignment="Left" Margin="61,165,0,164" Height="735" Width="1214" FontFamily="Arial" FontSize="24" Background="#FF2B2B2B" Foreground="#FF02C3BA" BorderBrush="#FF02C3BA" />
+        <ListBox Name="usersListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FF1A1A1A" Foreground="#FF02C3BA" FontSize="22" FontFamily="Arial" Padding="25,120,0,0" ScrollViewer.CanContentScroll="False"/>
 
     </Grid>
 </Window>
