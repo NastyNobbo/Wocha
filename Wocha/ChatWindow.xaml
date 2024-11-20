@@ -1,23 +1,82 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Wocha"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Wocha.ChatWindow"
-        mc:Ignorable="d"
-        Title="ChatWindow"
-        WindowStyle="ThreeDBorderWindow" Height="1080" Width="1920" WindowState="Maximized">
-    <Grid Background="#FF2B2B2B">
+    x:Class="Wocha.ChatWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Wocha"
+    Title="ChatWindow"
+    WindowStyle="ThreeDBorderWindow"
+    WindowState="Maximized"
+    Background="#FF2B2B2B">
+
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="89*"/>
-            <ColumnDefinition Width="391*"/>
+            <ColumnDefinition Width="150"/>
+            <!-- Установите фиксированную ширину для списка пользователей -->
+            <ColumnDefinition Width="*"/>
+            <!-- Для чата -->
         </Grid.ColumnDefinitions>
-        <Button Click="SendButton_Click" Content="Отправить" Margin="1130,951,0,0" HorizontalAlignment="Left" Width="145" Height="47" VerticalAlignment="Top" FontSize="14" FontFamily="Arial Black" Foreground="#FF02C3BA" Grid.Column="1" BorderBrush="#FF02C3BA" Background="#FF1B1B1B"/>
-        <TextBox Name="messageTextBox" KeyDown="messageTextBox_KeyDown" Grid.Column="1" HorizontalAlignment="Left" Margin="61,951,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1069" Height="47" FontSize="24" FontFamily="Arial" Background="#FF2B2B2B" BorderBrush="#FF02C3BA" SelectionBrush="#FF02C3BA" Foreground="#FF02C3BA"/>
 
-        <TextBox Grid.Column="1" Name="chatTextBox" HorizontalAlignment="Left" Margin="61,165,0,187" Width="1214" FontFamily="Arial" FontSize="24" Background="#FF2B2B2B" Foreground="#FF02C3BA" BorderBrush="#FF02C3BA" SelectionBrush="#FF02C3BA" IsReadOnly="True" />
-        <ListBox Name="usersListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#FF1A1A1A" Foreground="#FF02C3BA" FontSize="22" FontFamily="Arial" Padding="25,120,0,0" ScrollViewer.CanContentScroll="False"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Для области чата -->
+            <RowDefinition Height="Auto"/>
+            <!-- Для текстового поля и кнопки -->
+        </Grid.RowDefinitions>
 
+        <!-- Список пользователей с уменьшенной шириной -->
+        <ListBox Name="usersListBox" 
+                 Grid.Column="0" 
+                 Grid.Row="0" 
+                 Background="#FF1A1A1A" 
+                 Foreground="#FF02C3BA" 
+                 FontSize="22" 
+                 FontFamily="Arial" 
+                 Padding="10" 
+                 ScrollViewer.CanContentScroll="True" />
+
+        <!-- Область чата -->
+        <TextBox Name="chatTextBox" 
+                 Grid.Column="1" 
+                 Grid.Row="0" 
+                 Margin="10" 
+                 FontFamily="Arial" 
+                 FontSize="24" 
+                 Background="#FF2B2B2B" 
+                 Foreground="#FF02C3BA" 
+                 BorderBrush="#FF02C3BA" 
+                 SelectionBrush="#FF02C3BA" 
+                 IsReadOnly="True" 
+                 VerticalScrollBarVisibility="Auto" />
+
+        <!-- Текстовое поле для ввода сообщения -->
+        <TextBox Name="messageTextBox" 
+                 Grid.Column="1" 
+                 Grid.Row="1" 
+                 Margin="10" 
+                 KeyDown="messageTextBox_KeyDown" 
+                 TextWrapping="Wrap" 
+                 FontSize="24" 
+                 FontFamily="Arial" 
+                 Background="#FF2B2B2B" 
+                 BorderBrush="#FF02C3BA" 
+                 SelectionBrush="#FF02C3BA" 
+                 Foreground="#FF02C3BA" />
+
+        <!-- Кнопка отправки сообщения -->
+        <Button Click="SendButton_Click" 
+                Content="Отправить" 
+                Grid.Column="1" 
+                Grid.Row="1" 
+                Margin="10" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Center" 
+                Width="145" 
+                Height="47" 
+                FontSize="14" 
+                FontFamily="Arial Black" 
+                Foreground="#FF02C3BA" 
+                Background="#FF1B1B1B"/>
     </Grid>
 </Window>
