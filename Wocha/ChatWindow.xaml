@@ -17,6 +17,7 @@
         <TextBox Name="messageTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="61,951,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1069" Height="47" FontSize="24" FontFamily="Arial"/>
 
         <TextBox Grid.Column="1" Name="chatTextBox" HorizontalAlignment="Left" Margin="61,165,0,164" Height="735" Width="1214" FontFamily="Arial" FontSize="24" />
+        <ListBox Name="usersListBox" d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
     </Grid>
 </Window>
