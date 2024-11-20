@@ -23,7 +23,7 @@ namespace Wocha
             chatTextBox.Text += ($"{_userName} подключился к чату.\n");
             _client = client;
             _clients.Add(client); // Добавляем клиента в список
-            usersListBox.ItemsSource = userName;
+           
             StartReceivingMessages();
         }
 
@@ -116,12 +116,12 @@ namespace Wocha
         {
             SendMessage();
         }
-
+        
         private void messageTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                e.Handled = true; // Предотвращаем звуковой сигнал при нажатии Enter
+                e.Handled = true; 
                 SendMessage();
             }
         }

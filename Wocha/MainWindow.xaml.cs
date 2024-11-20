@@ -25,7 +25,7 @@ namespace Wocha
             InitializeComponent();
         }
 
-        private void AuthButton_Click(object sender, RoutedEventArgs e)
+        private void CreatorButton_Click(object sender, RoutedEventArgs e)
         {
             if (loginTextBox.Text == "")
             {
@@ -34,25 +34,26 @@ namespace Wocha
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Вы создаёте канал?", "Выбор",
-                    MessageBoxButton.YesNo);
-                switch (result)
-                {
-                    case MessageBoxResult.Yes:
-                        
-                        CreatorChatWindow creatorWindow = new CreatorChatWindow(loginTextBox.Text);
-                        creatorWindow.Show();
-                        break;
-                    case MessageBoxResult.No:
-                        ClientChatWindow clientWindow = new ClientChatWindow(loginTextBox.Text);
-                        clientWindow.Show();
-                        break;
-                }
-
-                
-                
-                this.Close();
+                CreatorChatWindow creatorWindow = new CreatorChatWindow(loginTextBox.Text);
+                creatorWindow.Show();
             }
+            this.Close();
+
+        }
+        private void ClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (loginTextBox.Text == "")
+            {
+                MessageBox.Show("Требуется ввести Логин", "Ошибка при вводе имени",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                ClientChatWindow creatorWindow = new ClientChatWindow(loginTextBox.Text);
+                creatorWindow.Show();
+            }
+            this.Close();
+
         }
     }
 }
