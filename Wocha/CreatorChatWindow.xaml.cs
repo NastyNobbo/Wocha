@@ -91,22 +91,15 @@ namespace Wocha
             try
             {
                 IPAddress ip = IPAddress.Parse(ipAddress);
-                using (var pipeClient = new NamedPipeClientStream(".", "testpipe", PipeDirection.InOut))
-                {
-                    pipeClient.Connect();
-                    string combinedMessage = $"{ipAddress}|{port}";
-                    byte[] buffer = Encoding.UTF8.GetBytes(combinedMessage);
-                    pipeClient.Write(buffer, 0, buffer.Length);
-                }
-                System.Diagnostics.Process.Start("ChatServer.exe");
-                this.Close(); // Закрываем окно конфигурации
+                
             }
             catch (Exception ex)
             {
+                this.Close(); // Закрываем окно конфигурации
                 MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            SendMessage(ipAddress, portTextBox.Text);
-            _server = new TcpListener(IPAddress.Parse(ipAddress), port;
+            
+            _server = new TcpListener(IPAddress.Parse(ipAddress), port);
             _server.Start();
             _server.BeginAcceptTcpClient(new AsyncCallback(OnClientConnect), null);
 
@@ -114,24 +107,8 @@ namespace Wocha
             chatWindow.Show();
             this.Close();
         }
-        private void SendMessage(string message1, string message2)
-        {
-            using (var pipeClient = new NamedPipeClientStream(".", "testpipe", PipeDirection.Out))
-            {
-                try
-                {
-                    pipeClient.Connect();
-                    // Объединяем сообщения через разделитель, например, "|"
-                    string combinedMessage = $"{message1}|{message2}";
-                    byte[] buffer = Encoding.UTF8.GetBytes(combinedMessage);
-                    pipeClient.Write(buffer, 0, buffer.Length);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}");
-                }
-            }
-        }
+        
+        
 
         private void OnClientConnect(IAsyncResult ar)
         {
