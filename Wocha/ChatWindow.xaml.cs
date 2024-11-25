@@ -86,12 +86,13 @@ namespace Wocha
         {
             NetworkStream stream = client.GetStream();
             byte[] buffer = new byte[1024];
+            string clientUsername = "";
 
             try
             {
                 // Получение имени пользователя клиента
                 int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
-                string clientUsername = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
+                clientUsername = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
                 
                 // Отправляем имя пользователя серверу
                 string connectionMessage = $"{clientUsername} подключился к чату.";
@@ -111,7 +112,14 @@ namespace Wocha
             }
             catch (IOException ioEx)
             {
-                MessageBox.Show($"Соединение закрыто: {ioEx.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                // Обработка разрыва соединения
+                if (!string.IsNullOrEmpty(clientUsername))
+                {
+                    string disconnectionMessage = $"{clientUsername} отключился от чата.";
+                    SendToAllClients(disconnectionMessage);
+                    Dispatcher.Invoke(() => AppendMessage(disconnectionMessage));
+                }
+                
             }
             catch (Exception ex)
             {
