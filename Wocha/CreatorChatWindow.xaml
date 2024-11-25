@@ -5,12 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wocha"
         mc:Ignorable="d"
-        Title="CreatorChatWindow" Height="270" Width="300">
+        Title="Создание чата"
+        Height="270"
+        Width="300" WindowStartupLocation="CenterScreen">
     <Grid Background="#FF2B2B2B">
-        <TextBox x:Name="ipTextBox" Margin="32,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="23" FontSize="14" FontFamily="Arial"/>
-        <Button Click="CreateButton_Click" Content="Создать канал" Margin="129,190,0,0" HorizontalAlignment="Left" Width="133" Height="28" VerticalAlignment="Top" FontSize="14" FontFamily="Arial Black" Foreground="#FF02C3BA" Background="#FF1B1B1B"/>
-        <Label Content="Введите необходимый ip" HorizontalAlignment="Left" FontFamily="Arial Black" FontSize="14" Foreground="#FF02C3BA" Height="27" VerticalAlignment="Top" Margin="32,29,0,0" Width="214"/>
-        <TextBox x:Name="portTextBox" Margin="32,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="230" Height="23" FontSize="14" FontFamily="Arial"/>
-        <Label Content="Введите открытый порт " HorizontalAlignment="Left" FontFamily="Arial Black" FontSize="14" Foreground="#FF02C3BA" Height="27" VerticalAlignment="Top" Margin="32,116,0,0" Width="205"/>
+        <TextBox x:Name="ipTextBox"
+                 Margin="32,61,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left"
+                 Width="230"
+                 Height="23"
+                 FontSize="14"
+                 FontFamily="Arial"/>
+        <Button Click="CreateButton_Click"
+                Content="Создать канал"
+                Margin="129,190,0,0"
+                HorizontalAlignment="Left"
+                Width="133"
+                Height="28"
+                VerticalAlignment="Top"
+                FontSize="14" 
+                FontFamily="Arial Black"
+                Foreground="#FF02C3BA" 
+                Background="#FF1B1B1B"/>
+        <Label Content="Введите необходимый ip"
+               HorizontalAlignment="Left"
+               FontFamily="Arial Black"
+               FontSize="14"
+               Foreground="#FF02C3BA"
+               Height="27"
+               VerticalAlignment="Top"
+               Margin="32,29,0,0"
+               Width="214"/>
+        <TextBox x:Name="portTextBox"
+                 Margin="32,143,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left"
+                 Width="230"
+                 Height="23"
+                 FontSize="14"
+                 FontFamily="Arial"/>
+        <Label Content="Введите открытый порт"
+               HorizontalAlignment="Left"
+               FontFamily="Arial Black"
+               FontSize="14"
+               Foreground="#FF02C3BA"
+               Height="27"
+               VerticalAlignment="Top"
+               Margin="32,116,0,0"
+               Width="205"/>
     </Grid>
 </Window>
