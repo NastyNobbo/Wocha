@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
@@ -20,7 +20,6 @@ namespace Wocha
         {
             InitializeComponent();
             _userName = userName;
-            chatTextBox.Text += ($"{_userName} подключился к чату.\n");
             _client = client;
             _clients.Add(client); // Добавляем клиента в список
            
@@ -41,8 +40,12 @@ namespace Wocha
         {
             if (_client != null)
             {
-                // Получение сообщений от клиента
+                // Отправляем имя пользователя серверу при подключении
                 NetworkStream stream = _client.GetStream();
+                byte[] userNameBytes = Encoding.UTF8.GetBytes(_userName);
+                await stream.WriteAsync(userNameBytes, 0, userNameBytes.Length);
+
+                // Получение сообщений от клиента
                 byte[] buffer = new byte[1024];
 
                 try
@@ -59,6 +62,7 @@ namespace Wocha
                 }
                 catch (IOException ioEx)
                 {
+
                     MessageBox.Show($"Соединение закрыто: {ioEx.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 catch (Exception ex)
@@ -73,21 +77,30 @@ namespace Wocha
                 {
                     TcpClient client = await _server.AcceptTcpClientAsync();
                     _clients.Add(client); // Добавляем нового клиента в список
-                    _ = Task.Run(() => HandleClient(client));
+                    _ = Task.Run(() => HandleClient(client, _userName)); // Передаем имя пользователя сервера
                 }
             }
         }
 
-        private async Task HandleClient(TcpClient client)
+        private async Task HandleClient(TcpClient client, string serverUsername)
         {
             NetworkStream stream = client.GetStream();
             byte[] buffer = new byte[1024];
 
             try
             {
+                // Получение имени пользователя клиента
+                int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                string clientUsername = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
+                
+                // Отправляем имя пользователя серверу
+                string connectionMessage = $"{clientUsername} подключился к чату.";
+                SendToAllClients(connectionMessage);
+                Dispatcher.Invoke(() => AppendMessage(connectionMessage));
+
                 while (true)
                 {
-                    int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                    bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
                     if (bytesRead > 0)
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
