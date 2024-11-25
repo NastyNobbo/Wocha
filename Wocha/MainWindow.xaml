@@ -7,13 +7,66 @@
         mc:Ignorable="d"
         Title="Wocha" Height="500" Width="800" ResizeMode="CanMinimize">
     <Grid Background="#FF2B2B2B">
-        <Button Click="CreatorButton_Click" Content="Создать" Margin="285,356,0,0" HorizontalAlignment="Left" Width="84" Height="28" VerticalAlignment="Top" FontSize="14" FontFamily="Arial Black" Foreground="#FF02C3BA" Background="#FF1B1B1B"/>
-        <TextBox Name="loginTextBox" Margin="0,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Width="230" Height="23" FontSize="14" FontFamily="Arial"/>
-        <Label Content="Wocha" Margin="343,71,343,0" HorizontalContentAlignment="Center" FontSize="24" FontFamily="Arial Black" VerticalAlignment="Top" Foreground="#FF02C3BA"/>
-        <Label Content="Вход в аккаунт" HorizontalAlignment="Center" Margin="0,122,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="18" Foreground="#FF02C3BA"/>
-        <Label Content="Логин" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="14" Foreground="#FF02C3BA" Height="23" VerticalAlignment="Top" Margin="0,207,0,0"/>
-        <Label Content="Введите свой логин для входа" HorizontalAlignment="Center" Margin="0,158,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="14" Foreground="#FF02C3BA"/>
-        <Button Click="ClientButton_Click" Content="Подключиться" Margin="374,356,0,0" HorizontalAlignment="Left" Width="141" Height="28" VerticalAlignment="Top" FontSize="14" FontFamily="Arial Black" Foreground="#FF02C3BA" Background="#FF1B1B1B"/>
+        <Button Click="CreatorButton_Click"
+                Content="Создать"
+                Margin="285,356,0,0"
+                HorizontalAlignment="Left"
+                Width="84"
+                Height="28"
+                VerticalAlignment="Top"
+                FontSize="14"
+                FontFamily="Arial Black"
+                Foreground="#FF02C3BA"
+                Background="#FF1B1B1B"/>
+        <TextBox Name="loginTextBox"
+                 Margin="0,235,0,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Center"
+                 Width="230"
+                 Height="23"
+                 FontSize="14"
+                 FontFamily="Arial"/>
+        <Label Content="Wocha"
+               Margin="343,71,343,0"
+               HorizontalContentAlignment="Center"
+               FontSize="24"
+               FontFamily="Arial Black"
+               VerticalAlignment="Top"
+               Foreground="#FF02C3BA"/>
+        <Label Content="Вход в аккаунт"
+               HorizontalAlignment="Center"
+               Margin="0,122,0,0"
+               VerticalAlignment="Top" 
+               FontFamily="Arial Black"
+               FontSize="18"
+               Foreground="#FF02C3BA"/>
+        <Label Content="Логин"
+               HorizontalAlignment="Center"
+               FontFamily="Arial Black"
+               FontSize="14"
+               Foreground="#FF02C3BA"
+               Height="23"
+               VerticalAlignment="Top"
+               Margin="0,207,0,0"/>
+        <Label Content="Введите свой логин для входа"
+               HorizontalAlignment="Center"
+               Margin="0,158,0,0"
+               VerticalAlignment="Top"
+               FontFamily="Arial Black"
+               FontSize="14"
+               Foreground="#FF02C3BA"/>
+        <Button Click="ClientButton_Click"
+                Content="Подключиться"
+                Margin="374,356,0,0"
+                HorizontalAlignment="Left"
+                Width="141"
+                Height="28"
+                VerticalAlignment="Top"
+                FontSize="14"
+                FontFamily="Arial Black"
+                Foreground="#FF02C3BA"
+                Background="#FF1B1B1B"/>
 
     </Grid>
 </Window>
