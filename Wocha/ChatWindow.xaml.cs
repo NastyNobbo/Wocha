@@ -15,6 +15,7 @@ namespace Wocha
         private TcpClient _client;
         private TcpListener _server;
         private static List<TcpClient> _clients = new List<TcpClient>();
+        private static List<string> _connectedUsernames = new List<string>();
 
         public ChatWindow(string userName, TcpClient client)
         {
@@ -33,6 +34,13 @@ namespace Wocha
             _userName = userName;
             chatTextBox.Text += ($"{_userName} создал канал.\n");
             _server = server;
+            
+            // Очищаем статический список перед добавлением создателя
+            _connectedUsernames.Clear();
+            
+            // Добавляем создателя чата в список пользователей
+            UpdateUsersList(_userName, true);
+            
             StartReceivingMessages();
         }
 
@@ -56,7 +64,7 @@ namespace Wocha
                         if (bytesRead > 0)
                         {
                             string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                            Dispatcher.Invoke(() => AppendMessage(message));
+                            ProcessReceivedMessage(message);
                         }
                     }
                 }
@@ -98,6 +106,7 @@ namespace Wocha
                 string connectionMessage = $"{clientUsername} подключился к чату.";
                 SendToAllClients(connectionMessage);
                 Dispatcher.Invoke(() => AppendMessage(connectionMessage));
+                UpdateUsersList(clientUsername, true);
 
                 while (true)
                 {
@@ -105,7 +114,7 @@ namespace Wocha
                     if (bytesRead > 0)
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        Dispatcher.Invoke(() => AppendMessage(message));
+                        ProcessReceivedMessage(message);
                         BroadcastMessage(message, client); // Рассылаем сообщение всем клиентам, кроме отправителя
                     }
                 }
@@ -118,6 +127,7 @@ namespace Wocha
                     string disconnectionMessage = $"{clientUsername} отключился от чата.";
                     SendToAllClients(disconnectionMessage);
                     Dispatcher.Invoke(() => AppendMessage(disconnectionMessage));
+                    UpdateUsersList(clientUsername, false);
                 }
                 
             }
@@ -201,6 +211,56 @@ namespace Wocha
                     NetworkStream stream = client.GetStream();
                     stream.Write(data, 0, data.Length);
                 }
+            }
+        }
+
+        private void UpdateUsersList(string username, bool isConnecting)
+        {
+            Dispatcher.Invoke(() => {
+                if (isConnecting && !_connectedUsernames.Contains(username))
+                {
+                    _connectedUsernames.Add(username);
+                }
+                else if (!isConnecting)
+                {
+                    _connectedUsernames.Remove(username);
+                }
+
+                // Clear and repopulate the ListBox
+                usersListBox.Items.Clear();
+                foreach (var user in _connectedUsernames)
+                {
+                    usersListBox.Items.Add(user);
+                }
+
+                // Формируем строку со списком пользователей для рассылки
+                string userListMessage = $"USERLIST:{string.Join(",", _connectedUsernames)}";
+                SendToAllClients(userListMessage);
+            });
+        }
+
+        private void ProcessReceivedMessage(string message)
+        {
+            // Обработка специальных системных сообщений
+            if (message.StartsWith("USERLIST:"))
+            {
+                string[] users = message.Substring(9).Split(',');
+                
+                Dispatcher.Invoke(() => {
+                    usersListBox.Items.Clear();
+                    foreach (var user in users)
+                    {
+                        if (!string.IsNullOrWhiteSpace(user))
+                        {
+                            usersListBox.Items.Add(user);
+                        }
+                    }
+                });
+            }
+            else
+            {
+                // Обычное текстовое сообщение
+                Dispatcher.Invoke(() => AppendMessage(message));
             }
         }
     }
