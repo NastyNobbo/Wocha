@@ -52,7 +52,7 @@ namespace Wocha
             // Генерируем случайный порт, пока не найдем открытый
             while (!portFound)
             {
-                randomPort = random.Next(1024, 65535); // Генерируем порт в диапазоне от 1024 до 65535
+                randomPort = random.Next(49152, 65535); // Генерируем порт в диапазоне от 49152 до 65535
                 if (IsPortOpen(randomPort))
                 {
                     portFound = true;

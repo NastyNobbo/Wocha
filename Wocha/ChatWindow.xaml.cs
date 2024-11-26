@@ -226,7 +226,7 @@ namespace Wocha
                     _connectedUsernames.Remove(username);
                 }
 
-                // Clear and repopulate the ListBox
+                // Очистка и заполнение ListBox
                 usersListBox.Items.Clear();
                 foreach (var user in _connectedUsernames)
                 {
