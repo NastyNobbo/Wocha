@@ -25,7 +25,6 @@
             <!-- Для текстового поля и кнопки -->
         </Grid.RowDefinitions>
 
-        <!-- Список пользователей с уменьшенной шириной -->
         <ListBox Name="usersListBox" 
                  Grid.Column="0" 
                  Grid.Row="0" 
@@ -36,7 +35,6 @@
                  Padding="10" 
                  ScrollViewer.CanContentScroll="True" />
 
-        <!-- Область чата -->
         <TextBox Name="chatTextBox" 
                  Grid.Column="1" 
                  Grid.Row="0" 
@@ -48,35 +46,39 @@
                  BorderBrush="#FF02C3BA" 
                  SelectionBrush="#FF02C3BA" 
                  IsReadOnly="True" 
-                 VerticalScrollBarVisibility="Auto" />
+                 VerticalScrollBarVisibility="Auto"
+                 TextWrapping="Wrap"/>
 
-        <!-- Текстовое поле для ввода сообщения -->
-        <TextBox Name="messageTextBox" 
-                 Grid.Column="1" 
-                 Grid.Row="1" 
-                 Margin="10" 
-                 KeyDown="messageTextBox_KeyDown" 
-                 TextWrapping="Wrap" 
-                 FontSize="24" 
-                 FontFamily="Arial" 
-                 Background="#FF2B2B2B" 
-                 BorderBrush="#FF02C3BA" 
-                 SelectionBrush="#FF02C3BA" 
-                 Foreground="#FF02C3BA" />
+        <!-- Контейнер для текстового поля и кнопки -->
+        <Grid Grid.Column="1" Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-        <!-- Кнопка отправки сообщения -->
-        <Button Click="SendButton_Click" 
-                Content="Отправить" 
-                Grid.Column="1" 
-                Grid.Row="1" 
-                Margin="10" 
-                HorizontalAlignment="Right" 
-                VerticalAlignment="Center" 
-                Width="145" 
-                Height="47" 
-                FontSize="14" 
-                FontFamily="Arial Black" 
-                Foreground="#FF02C3BA" 
-                Background="#FF1B1B1B"/>
+            <TextBox Name="messageTextBox"
+                     MaxHeight="100"
+                     Grid.Column="0" 
+                     KeyDown="messageTextBox_KeyDown" 
+                     TextWrapping="Wrap" 
+                     FontSize="24" 
+                     FontFamily="Arial" 
+                     Background="#FF2B2B2B" 
+                     BorderBrush="#FF02C3BA" 
+                     SelectionBrush="#FF02C3BA" 
+                     Foreground="#FF02C3BA" />
+
+            <Button Click="SendButton_Click" 
+                    Content="Отправить" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" 
+                    Width="145" 
+                    Height="47" 
+                    FontSize="14" 
+                    FontFamily="Arial Black" 
+                    Foreground="#FF02C3BA" 
+                    Background="#FF1B1B1B"/>
+        </Grid>
     </Grid>
 </Window>

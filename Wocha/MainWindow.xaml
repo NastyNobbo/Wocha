@@ -34,7 +34,7 @@
                FontFamily="Arial Black"
                VerticalAlignment="Top"
                Foreground="#FF02C3BA"/>
-        <Label Content="Вход в аккаунт"
+        <Label Content="Вход в систему"
                HorizontalAlignment="Center"
                Margin="0,122,0,0"
                VerticalAlignment="Top" 

@@ -119,7 +119,7 @@ namespace Wocha
                     }
                 }
             }
-            catch (IOException ioEx)
+            catch (IOException)
             {
                 // Обработка разрыва соединения
                 if (!string.IsNullOrEmpty(clientUsername))
@@ -178,7 +178,7 @@ namespace Wocha
             }
             else
             {
-                MessageBox.Show("Введите сообщение перед отправкой.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                
             }
         }
 
