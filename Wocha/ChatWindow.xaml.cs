@@ -32,7 +32,7 @@ namespace Wocha
             InitializeComponent();
 
             _userName = userName;
-            chatTextBox.Text += ($"{_userName} создал канал.\n");
+            chatTextBox.Text += ($"{_userName} создал(-а) канал.\n");
             _server = server;
             
             // Очищаем статический список перед добавлением создателя
@@ -103,7 +103,7 @@ namespace Wocha
                 clientUsername = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
                 
                 // Отправляем имя пользователя серверу
-                string connectionMessage = $"{clientUsername} подключился к чату.";
+                string connectionMessage = $"{clientUsername} подключился(-ась) к чату.";
                 SendToAllClients(connectionMessage);
                 Dispatcher.Invoke(() => AppendMessage(connectionMessage));
                 UpdateUsersList(clientUsername, true);
@@ -124,7 +124,7 @@ namespace Wocha
                 // Обработка разрыва соединения
                 if (!string.IsNullOrEmpty(clientUsername))
                 {
-                    string disconnectionMessage = $"{clientUsername} отключился от чата.";
+                    string disconnectionMessage = $"{clientUsername} отключился(-ась) от чата.";
                     SendToAllClients(disconnectionMessage);
                     Dispatcher.Invoke(() => AppendMessage(disconnectionMessage));
                     UpdateUsersList(clientUsername, false);

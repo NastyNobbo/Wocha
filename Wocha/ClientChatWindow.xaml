@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Подключение к чату"
         Height="270"
-        Width="300" WindowStartupLocation="CenterScreen">
+        Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Background="#FF2B2B2B">
         <TextBox x:Name="ipTextBox"
                  Margin="32,61,0,0"
