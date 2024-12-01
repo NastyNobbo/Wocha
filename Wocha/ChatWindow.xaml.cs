@@ -1,3 +1,4 @@
+using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Windows.ApplicationModel.Activation;
+using Windows.Foundation.Collections;
 
 namespace Wocha
 {
@@ -23,14 +26,14 @@ namespace Wocha
             _userName = userName;
             _client = client;
             _clients.Add(client); // Добавляем клиента в список
-           
+            ToastNotificationManagerCompat.OnActivated += ToastNotificationManagerCompat_OnActivated;
             StartReceivingMessages();
         }
 
         public ChatWindow(string userName, TcpListener server)
         {
             InitializeComponent();
-
+            ToastNotificationManagerCompat.OnActivated += ToastNotificationManagerCompat_OnActivated;
             _userName = userName;
             chatTextBox.Text += ($"{_userName} создал(-а) канал.\n");
             _server = server;
@@ -166,9 +169,10 @@ namespace Wocha
                 {
                     // Проверка состояния соединения перед отправкой сообщения
                     
-                        SendToAllClients(message); // Отправляем сообщение всем клиентам
-                        AppendMessage(message);
-                        messageTextBox.Clear();
+                    SendToAllClients(message); // Отправляем сообщение всем клиентам
+                    AppendMessage(message);
+                    messageTextBox.Clear();
+                    
                     
                 }
                 catch (Exception ex)
@@ -185,6 +189,7 @@ namespace Wocha
         private void SendToAllClients(string message)
         {
             byte[] data = Encoding.UTF8.GetBytes(message);
+
             foreach (var client in _clients)
             {
                 if (client.Connected)
@@ -197,6 +202,7 @@ namespace Wocha
 
         private void AppendMessage(string message)
         {
+            ShowToastNotification(message);
             chatTextBox.Text += $"{message}\n";
             chatTextBox.ScrollToEnd(); // Прокрутка к последнему сообщению
         }
@@ -213,7 +219,43 @@ namespace Wocha
                 }
             }
         }
+        private void ShowToastNotification(string message)
+        {
+            if (WindowState == WindowState.Minimized)
+            {
+                new ToastContentBuilder()
+                    .AddArgument("conversationId", "9813")
+                    .AddButton(new ToastButton()
+                        .SetContent("Открыть")
+                        .AddArgument("action", "OnActivated"))
+                    .AddText(message)
+                    .Show(toast =>
+                    {
+                        toast.ExpirationTime = DateTime.Now.AddHours(1); // Установлено на 1 час вместо 1 дня
+                    });
+            }
+        }
 
+        private void ToastNotificationManagerCompat_OnActivated(ToastNotificationActivatedEventArgsCompat e)
+        {
+            // Проверяем аргумент, чтобы понять, что было нажато
+            if (e.Argument.Contains("action=OnActivated"))
+            {
+                // Используем Dispatcher для доступа к UI-элементам из другого потока
+                Dispatcher.Invoke(() =>
+                {
+                    WindowState = WindowState.Normal; // Восстанавливаем окно
+                    Activate(); // Убедитесь, что окно активно
+                });
+            }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            // Отписка от события
+            ToastNotificationManagerCompat.OnActivated -= ToastNotificationManagerCompat_OnActivated;
+            base.OnClosed(e);
+        }
         private void UpdateUsersList(string username, bool isConnecting)
         {
             Dispatcher.Invoke(() => {
