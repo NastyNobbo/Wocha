@@ -56,5 +56,16 @@
                VerticalAlignment="Top"
                Margin="32,116,0,0"
                Width="205"/>
+        <Button Click="BackButton_Click"
+            Content="Назад"
+            Margin="32,190,0,0"
+            HorizontalAlignment="Left"
+            Width="66"
+            Height="28"
+            VerticalAlignment="Top"
+            FontSize="14" 
+            FontFamily="Arial Black"
+            Foreground="#FF02C3BA" 
+            Background="#FF1B1B1B"/>
     </Grid>
 </Window>

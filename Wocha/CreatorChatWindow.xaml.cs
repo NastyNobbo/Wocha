@@ -116,6 +116,13 @@ namespace Wocha
             // Здесь можно создать поток для обработки сообщений
         }
 
-        
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            mainWindow.loginTextBox.Text = _userName;
+            mainWindow.loginTextBox.Focus();
+            this.Close();
+        }
     }
 }

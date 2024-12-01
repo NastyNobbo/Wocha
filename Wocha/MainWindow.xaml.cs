@@ -23,6 +23,7 @@ namespace Wocha
         public MainWindow()
         {
             InitializeComponent();
+            loginTextBox.Focus();
         }
 
         private void CreatorButton_Click(object sender, RoutedEventArgs e)

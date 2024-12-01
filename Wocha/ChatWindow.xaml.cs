@@ -231,7 +231,7 @@ namespace Wocha
                     .AddText(message)
                     .Show(toast =>
                     {
-                        toast.ExpirationTime = DateTime.Now.AddHours(1); // Установлено на 1 час вместо 1 дня
+                        toast.ExpirationTime = DateTime.Now.AddHours(1); // Установлено на 1 час
                     });
             }
         }
@@ -245,7 +245,7 @@ namespace Wocha
                 Dispatcher.Invoke(() =>
                 {
                     WindowState = WindowState.Normal; // Восстанавливаем окно
-                    Activate(); // Убедитесь, что окно активно
+                    Activate(); 
                 });
             }
         }
@@ -304,6 +304,25 @@ namespace Wocha
                 // Обычное текстовое сообщение
                 Dispatcher.Invoke(() => AppendMessage(message));
             }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Вы точно хотите выйти из чата?", "Покинуть чат",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                mainWindow.loginTextBox.Text = _userName;
+                mainWindow.loginTextBox.Focus();
+                this.Close();
+            }
+            else
+            {
+
+            }
+
         }
     }
 }

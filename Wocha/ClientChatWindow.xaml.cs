@@ -51,5 +51,13 @@ namespace Wocha
                 MessageBox.Show($"Ошибка подключения: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            mainWindow.loginTextBox.Text = _userName;
+            mainWindow.loginTextBox.Focus();
+            this.Close();
+        }
     }
 }

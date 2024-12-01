@@ -12,7 +12,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
             <!-- Установите фиксированную ширину для списка пользователей -->
             <ColumnDefinition Width="*"/>
             <!-- Для чата -->
@@ -30,9 +30,10 @@
                  Grid.Row="0" 
                  Background="#FF1A1A1A" 
                  Foreground="#FF02C3BA" 
-                 FontSize="22" 
+                 FontSize="22"
                  FontFamily="Arial" 
-                 Padding="10" 
+                 Padding="10"
+                 Margin="5"
                  ScrollViewer.CanContentScroll="True" />
 
         <TextBox Name="chatTextBox" 
@@ -80,5 +81,18 @@
                     Foreground="#FF02C3BA" 
                     Background="#FF1B1B1B"/>
         </Grid>
+        <Button Content="Выйти" 
+                Grid.Column="0" 
+                Grid.Row="1" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Bottom" 
+                Margin="10" 
+                Width="145" 
+                Height="47" 
+                FontSize="14" 
+                FontFamily="Arial Black" 
+                Foreground="#FF02C3BA" 
+                Background="#FF1B1B1B"
+                Click="ExitButton_Click"/>
     </Grid>
 </Window>
