@@ -37,8 +37,8 @@ namespace Wocha
             {
                 CreatorChatWindow creatorWindow = new CreatorChatWindow(loginTextBox.Text);
                 creatorWindow.Show();
+                this.Close();
             }
-            this.Close();
 
         }
         private void ClientButton_Click(object sender, RoutedEventArgs e)
@@ -52,8 +52,8 @@ namespace Wocha
             {
                 ClientChatWindow creatorWindow = new ClientChatWindow(loginTextBox.Text);
                 creatorWindow.Show();
+                this.Close();
             }
-            this.Close();
 
         }
     }
